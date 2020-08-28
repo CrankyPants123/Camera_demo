@@ -59,6 +59,7 @@ void MainWindow::paintEvent(QPaintEvent *event)
 //            }
         }
 //        qDebug()<<m_buttongroup->checkedId();
+       m_framerate++;
         switch(m_buttongroup->checkedId()){
             case 1: surface_->paint_nature(&painter);break;//在主窗口绘制
 //        case 1: qDebug()<<"case1"<<m_buttongroup->checkedId();break;
@@ -80,4 +81,5 @@ void MainWindow::resizeEvent(QResizeEvent *event)
 
 void MainWindow::frame_count(){
     qDebug()<<"frame rate now:"<<m_framerate;
+    m_framerate = 0;
 }

@@ -80,8 +80,8 @@ void MyVideoSurface::paint_nature(QPainter *painter)//绘制每一帧数据
     if (currentFrame_.map(QAbstractVideoBuffer::ReadOnly)) {
         //img就是转换的数据了
 //        获取radiobutton状态 返回id值
-        static int i=1;
-        qDebug()<<"filter status:"<<i++;
+//        static int i=1;
+//        qDebug()<<"filter status:"<<i++;
 //        灰度处理部分
 //        qDebug()<<"nature";
         QImage img = QImage(currentFrame_.bits(),currentFrame_.width(),currentFrame_.height(),currentFrame_.bytesPerLine(),imageFormat_).mirrored(true,false).scaled(widget_->size());
