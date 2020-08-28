@@ -33,6 +33,7 @@ private:
     QRect          targetRect_;
     QSize          imageSize_;
     QVideoFrame    currentFrame_;
+
 //    QButtonGroup   * m_buttongroup;
 //    QRadioButton   * b_nature;
 //    QRadioButton   * b_grey;

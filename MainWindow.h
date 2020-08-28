@@ -31,8 +31,12 @@ private:
     QButtonGroup   * m_buttongroup;
     QRadioButton   * b_nature;
     QRadioButton   * b_grey;
-
     void Init();
+    int m_framerate = 0;
+    QTimer         * m_timer;
+
+private slots:
+    void frame_count();
 };
 
 #endif // MAINWINDOW_H

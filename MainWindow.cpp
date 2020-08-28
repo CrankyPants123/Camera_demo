@@ -29,7 +29,12 @@ void MainWindow::Init(){
     m_buttongroup->addButton(ui->b_nature,1);
     m_buttongroup->addButton(ui->b_grey,2);
     m_buttongroup->addButton(ui->b_warm,3);
-    qDebug()<<camera_->supportedViewfinderResolutions();
+//    获取设备支持的分辨率
+//    qDebug()<<camera_->supportedViewfinderResolutions();
+
+    m_timer = new QTimer(this);
+    connect(m_timer,SIGNAL(timeout()),this,SLOT(frame_count()));
+    m_timer->start(1000);
 
 }
 QSize MainWindow::sizeHint() const
@@ -71,4 +76,8 @@ void MainWindow::resizeEvent(QResizeEvent *event)
 {
     QMainWindow::resizeEvent(event);
     surface_->updateVideoRect();
+}
+
+void MainWindow::frame_count(){
+    qDebug()<<"frame rate now:"<<m_framerate;
 }
