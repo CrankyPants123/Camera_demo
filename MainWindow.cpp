@@ -29,8 +29,9 @@ void MainWindow::Init(){
     m_buttongroup->addButton(ui->b_nature,1);
     m_buttongroup->addButton(ui->b_grey,2);
     m_buttongroup->addButton(ui->b_warm,3);
+    m_buttongroup->addButton(ui->b_cold,4);
 //    获取设备支持的分辨率
-//    qDebug()<<camera_->supportedViewfinderResolutions();
+    qDebug()<<camera_->supportedViewfinderResolutions();
 
     m_timer = new QTimer(this);
     connect(m_timer,SIGNAL(timeout()),this,SLOT(frame_count()));
@@ -62,10 +63,9 @@ void MainWindow::paintEvent(QPaintEvent *event)
        m_framerate++;
         switch(m_buttongroup->checkedId()){
             case 1: surface_->paint_nature(&painter);break;//在主窗口绘制
-//        case 1: qDebug()<<"case1"<<m_buttongroup->checkedId();break;
-            case 2: surface_->paint_grey(&painter);break;//在主窗口绘制
-//        case 2: qDebug()<<"case2"<<m_buttongroup->checkedId();break;
-            case 3: surface_->paint_warm(&painter);break;//在主窗口绘制
+            case 2: surface_->paint_grey(&painter);break;
+            case 3: surface_->paint_warm(&painter);break;
+            case 4: surface_->paint_cold(&painter);break;
         }
 
     } else {

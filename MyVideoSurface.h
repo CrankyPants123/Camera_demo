@@ -25,7 +25,7 @@ public:
     void paint_nature(QPainter *painter);
     void paint_grey(QPainter *painter);
     void paint_warm(QPainter *painter);
-
+    void paint_cold(QPainter *painter);
 
 private:
     QWidget      * widget_;

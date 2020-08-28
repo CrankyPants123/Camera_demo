@@ -89,6 +89,7 @@ void MyVideoSurface::paint_nature(QPainter *painter)//绘制每一帧数据
         currentFrame_.unmap();
     }
 }
+//灰度滤镜
 void MyVideoSurface::paint_grey(QPainter *painter)
 {
     if (currentFrame_.map(QAbstractVideoBuffer::ReadOnly)) {
@@ -109,6 +110,7 @@ void MyVideoSurface::paint_grey(QPainter *painter)
         currentFrame_.unmap();
     }
 }
+//暖色调滤镜
 void MyVideoSurface::paint_warm(QPainter *painter)
 {
     if (currentFrame_.map(QAbstractVideoBuffer::ReadOnly)) {
@@ -124,7 +126,7 @@ void MyVideoSurface::paint_warm(QPainter *painter)
                 oldColor = QColor(img.pixel(x,y));
 
 //                r = oldColor.red() + ;
-//                为红绿通道增加的值,这里直接写死
+//                为红绿通道增加的值,这里直接写死，之后可以考虑通过滑块动态传递参数来实现效果的调整等
                 r = oldColor.red() + 50;
                 g = oldColor.green() + 50;
                 b = oldColor.blue();
@@ -136,6 +138,35 @@ void MyVideoSurface::paint_warm(QPainter *painter)
                 newImage->setPixel(x,y, qRgb(r,g,b));
             }
         }
+
+        painter->drawImage(targetRect_, *newImage, QRect(QPoint(0,0),img.size()));
+        currentFrame_.unmap();
+    }
+}
+//冷色调滤镜
+void MyVideoSurface::paint_cold(QPainter *painter)
+{
+    if (currentFrame_.map(QAbstractVideoBuffer::ReadOnly)) {
+        QImage img = QImage(currentFrame_.bits(),currentFrame_.width(),currentFrame_.height(),currentFrame_.bytesPerLine(),imageFormat_).mirrored(true,false).scaled(widget_->size());
+        QImage *newImage = new QImage(img.width(), img.height(), QImage::Format_ARGB32);
+
+           QColor oldColor;
+           int r,g,b;
+
+           for(int x=0; x<newImage->width(); x++){
+               for(int y=0; y<newImage->height(); y++){
+                   oldColor = QColor(img.pixel(x,y));
+
+                   r = oldColor.red();
+                   g = oldColor.green();
+                   b = oldColor.blue()+50;
+
+                   //we check if the new value is between 0 and 255
+                   b = qBound(0, b, 255);
+
+                   newImage->setPixel(x,y, qRgb(r,g,b));
+               }
+           }
 
         painter->drawImage(targetRect_, *newImage, QRect(QPoint(0,0),img.size()));
         currentFrame_.unmap();
