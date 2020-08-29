@@ -27,6 +27,7 @@ public:
     void paint_warm(QPainter *painter);
     void paint_cold(QPainter *painter);
     void paint_saturation(QPainter *painter);
+    void paint_metal(QPainter *painter);
 
 private:
     QWidget      * widget_;

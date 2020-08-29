@@ -172,7 +172,7 @@ void MyVideoSurface::paint_cold(QPainter *painter)
         currentFrame_.unmap();
     }
 }
-
+//高饱和
 void MyVideoSurface::paint_saturation(QPainter *painter)
 {
     if (currentFrame_.map(QAbstractVideoBuffer::ReadOnly)) {
@@ -204,6 +204,32 @@ void MyVideoSurface::paint_saturation(QPainter *painter)
         }
 
         painter->drawImage(targetRect_, *newImage, QRect(QPoint(0,0),img.size()));
+        currentFrame_.unmap();
+    }
+}
+//金属
+void MyVideoSurface::paint_metal(QPainter *painter)//绘制每一帧数据
+{
+    if (currentFrame_.map(QAbstractVideoBuffer::ReadOnly)) {
+
+        QImage img = QImage(currentFrame_.bits(),currentFrame_.width(),currentFrame_.height(),currentFrame_.bytesPerLine(),imageFormat_).mirrored(true,false).scaled(widget_->size());
+
+        QImage * newImage = new QImage("/metal.png");
+//        QImage * darkImage = &img;
+//        QImage * greyImage = paint_grey(&darkImage);
+        QPainter m_painter;
+
+        m_painter.begin(newImage);
+
+        m_painter.setOpacity(0.5);
+        m_painter.drawImage(0, 0, img);
+
+        m_painter.end();
+
+//        delete greyImage;
+//        delete darkImage;
+
+        painter->drawImage(targetRect_, img, QRect(QPoint(0,0),img.size()));
         currentFrame_.unmap();
     }
 }
