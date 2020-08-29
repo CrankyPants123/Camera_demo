@@ -29,8 +29,8 @@
    <widget class="QRadioButton" name="b_nature">
     <property name="geometry">
      <rect>
-      <x>70</x>
-      <y>420</y>
+      <x>60</x>
+      <y>320</y>
       <width>100</width>
       <height>20</height>
      </rect>
@@ -45,8 +45,8 @@
    <widget class="QRadioButton" name="b_grey">
     <property name="geometry">
      <rect>
-      <x>70</x>
-      <y>440</y>
+      <x>60</x>
+      <y>340</y>
       <width>100</width>
       <height>20</height>
      </rect>
@@ -58,8 +58,8 @@
    <widget class="QRadioButton" name="b_warm">
     <property name="geometry">
      <rect>
-      <x>70</x>
-      <y>460</y>
+      <x>60</x>
+      <y>360</y>
       <width>100</width>
       <height>20</height>
      </rect>
@@ -71,14 +71,27 @@
    <widget class="QRadioButton" name="b_cold">
     <property name="geometry">
      <rect>
-      <x>70</x>
-      <y>480</y>
+      <x>60</x>
+      <y>380</y>
       <width>100</width>
       <height>20</height>
      </rect>
     </property>
     <property name="text">
      <string>cold</string>
+    </property>
+   </widget>
+   <widget class="QRadioButton" name="b_saturation">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>400</y>
+      <width>100</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>saturation</string>
     </property>
    </widget>
   </widget>

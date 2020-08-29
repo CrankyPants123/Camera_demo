@@ -172,3 +172,38 @@ void MyVideoSurface::paint_cold(QPainter *painter)
         currentFrame_.unmap();
     }
 }
+
+void MyVideoSurface::paint_saturation(QPainter *painter)
+{
+    if (currentFrame_.map(QAbstractVideoBuffer::ReadOnly)) {
+
+        QImage img = QImage(currentFrame_.bits(),currentFrame_.width(),currentFrame_.height(),currentFrame_.bytesPerLine(),imageFormat_).mirrored(true,false).scaled(widget_->size());
+
+        QImage * newImage = new QImage(img.width(), img.height(), QImage::Format_ARGB32);
+
+        QColor oldColor;
+        QColor newColor;
+        int h,s,l;
+
+        for(int x=0; x<newImage->width(); x++){
+            for(int y=0; y<newImage->height(); y++){
+                oldColor = QColor(img.pixel(x,y));
+
+                newColor = oldColor.toHsl();
+                h = newColor.hue();
+                s = newColor.saturation()+50;
+                l = newColor.lightness();
+
+                //we check if the new value is between 0 and 255
+                s = qBound(0, s, 255);
+
+                newColor.setHsl(h, s, l);
+
+                newImage->setPixel(x, y, qRgb(newColor.red(), newColor.green(), newColor.blue()));
+            }
+        }
+
+        painter->drawImage(targetRect_, *newImage, QRect(QPoint(0,0),img.size()));
+        currentFrame_.unmap();
+    }
+}
