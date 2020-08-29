@@ -67,7 +67,7 @@ void MainWindow::paintEvent(QPaintEvent *event)
             case 2: surface_->paint_grey(&painter);break;
             case 3: surface_->paint_warm(&painter);break;
             case 4: surface_->paint_cold(&painter);break;
-            case 5: surface_->paint_saturation(&painter);break;
+//            case 5: surface_->paint_saturation(&painter);break;
         }
 
     } else {
