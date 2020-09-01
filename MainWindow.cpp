@@ -22,6 +22,7 @@ void MainWindow::Init(){
     m_viewfinder.setResolution(640,480);
     m_viewfinder.setMinimumFrameRate(30.0);
     surface_ = new MyVideoSurface(this);
+    camera_->setCaptureMode(QCamera::CaptureStillImage);
     camera_->setViewfinder(surface_);
     camera_->setViewfinderSettings(m_viewfinder);
     camera_->start();
@@ -32,8 +33,13 @@ void MainWindow::Init(){
     m_buttongroup->addButton(ui->b_cold,4);
     m_buttongroup->addButton(ui->b_saturation,5);
     m_buttongroup->addButton(ui->b_metal,6);
-//    获取设备支持的分辨率
-    qDebug()<<camera_->supportedViewfinderResolutions();
+    connect(ui->action1920_x_1080,SIGNAL(triggered()),this,SLOT(switch_1080()));
+    connect(ui->action1280_x_800,SIGNAL(triggered()),this,SLOT(switch_800()));
+    connect(ui->action1280_x_720,SIGNAL(triggered()),this,SLOT(switch_720()));
+    connect(ui->action640_x_480,SIGNAL(triggered()),this,SLOT(switch_480()));
+    connect(ui->action352_x_288,SIGNAL(triggered()),this,SLOT(switch_288()));
+    connect(ui->b_cheese,SIGNAL(clicked()),this,SLOT(save_image()));
+    connect(ui->b_cheese,SIGNAL(clicked()),this,SLOT(image_display()));
 
     m_timer = new QTimer(this);
     connect(m_timer,SIGNAL(timeout()),this,SLOT(frame_count()));
@@ -68,8 +74,8 @@ void MainWindow::paintEvent(QPaintEvent *event)
             case 2: surface_->paint_grey(&painter);break;
             case 3: surface_->paint_warm(&painter);break;
             case 4: surface_->paint_cold(&painter);break;
-            case 5: surface_->paint_saturation(&painter);break;
-            case 6: surface_->paint_metal(&painter);break;
+            case 5: surface_->paint_nature(&painter);break;
+            case 6: surface_->paint_nature(&painter);break;
         }
 
     } else {
@@ -86,4 +92,39 @@ void MainWindow::resizeEvent(QResizeEvent *event)
 void MainWindow::frame_count(){
     qDebug()<<"frame rate now:"<<m_framerate;
     m_framerate = 0;
+}
+
+void MainWindow::switch_1080(){
+    QCameraViewfinderSettings m_viewfinder_2;
+    m_viewfinder_2.setResolution(1920,1080);
+    camera_->setViewfinderSettings(m_viewfinder_2);
+}
+void MainWindow::switch_800(){
+    QCameraViewfinderSettings m_viewfinder_2;
+    m_viewfinder_2.setResolution(1280,800);
+    camera_->setViewfinderSettings(m_viewfinder_2);
+}
+
+void MainWindow::switch_720(){
+    QCameraViewfinderSettings m_viewfinder_2;
+    m_viewfinder_2.setResolution(1280,720);
+//    m_viewfinder_2.setMinimumFrameRate(30.0);
+    camera_->setViewfinderSettings(m_viewfinder_2);
+}
+void MainWindow::switch_480(){
+    QCameraViewfinderSettings m_viewfinder_2;
+    m_viewfinder_2.setResolution(640,480);
+    camera_->setViewfinderSettings(m_viewfinder_2);
+}
+
+void MainWindow::switch_288(){
+    QCameraViewfinderSettings m_viewfinder_2;
+    m_viewfinder_2.setResolution(352,288);
+    camera_->setViewfinderSettings(m_viewfinder_2);
+}
+void MainWindow::save_image(){
+    qDebug()<<"image save";
+}
+void MainWindow::image_display(){
+    qDebug()<<"imagedisplay_reserve";
 }

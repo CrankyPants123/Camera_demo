@@ -107,6 +107,19 @@
      <string>metal</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="b_cheese">
+    <property name="geometry">
+     <rect>
+      <x>320</x>
+      <y>410</y>
+      <width>31</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>O</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
@@ -114,10 +127,82 @@
      <x>0</x>
      <y>0</y>
      <width>722</width>
-     <height>22</height>
+     <height>29</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>分辨率</string>
+    </property>
+    <addaction name="action1920_x_1080"/>
+    <addaction name="action1280_x_800"/>
+    <addaction name="action1280_x_720"/>
+    <addaction name="action640_x_480"/>
+    <addaction name="action352_x_288"/>
+    <addaction name="action320_x_240"/>
+   </widget>
+   <addaction name="menu"/>
   </widget>
+  <action name="action1920_x_1080">
+   <property name="text">
+    <string>1920 x 1080</string>
+   </property>
+  </action>
+  <action name="action1280_x_720">
+   <property name="text">
+    <string>1280 x 720</string>
+   </property>
+  </action>
+  <action name="action640_x_480">
+   <property name="text">
+    <string>640 x 480</string>
+   </property>
+  </action>
+  <action name="action320_x_240">
+   <property name="text">
+    <string>320 x 240</string>
+   </property>
+  </action>
+  <action name="action1280_x_800">
+   <property name="text">
+    <string>1280 x 800</string>
+   </property>
+  </action>
+  <action name="action352_x_288">
+   <property name="text">
+    <string>352 x 288</string>
+   </property>
+  </action>
+  <action name="actionNature">
+   <property name="text">
+    <string>nature</string>
+   </property>
+  </action>
+  <action name="actionGrey">
+   <property name="text">
+    <string>grey</string>
+   </property>
+  </action>
+  <action name="actionWarm">
+   <property name="text">
+    <string>warm</string>
+   </property>
+  </action>
+  <action name="actionCold">
+   <property name="text">
+    <string>cold</string>
+   </property>
+  </action>
+  <action name="actionSaturation">
+   <property name="text">
+    <string>saturation</string>
+   </property>
+  </action>
+  <action name="actionMetal">
+   <property name="text">
+    <string>metal</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>
